@@ -4,24 +4,22 @@ from django.db.models.query_utils import Q
 
 class CustomUserManager(BaseUserManager):
 
-    def create_user(self, email, phone, password):
+    # Creat User
+    def create_user(self, email, password, **kwargs):
         if email is None:
             raise TypeError('Users must have an email address.')
-
-        if phone is None:
-            raise TypeError('Users must have a phone.')
-
-        user = self.model(email=self.normalize_email(email), phone=phone)
+        user = self.model(email=self.normalize_email(email), phone=kwargs.get('phone'))
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, email, phone, password):
+    # Create SuperUser
+    def create_superuser(self, email, password, **kwargs):
         if password is None:
             raise TypeError('Superusers must have a password.')
 
         user = self.create_user(
-            email=email, phone=phone, password=password
+            email=email, phone=kwargs.get('phone'), password=password
         )
         user.is_superuser = True
         user.is_staff = True

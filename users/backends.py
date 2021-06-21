@@ -9,8 +9,10 @@ from django.db.models.query_utils import Q
 
 from .models import CustomUser
 
+
 class CustomModelBackend(BaseBackend):
 
+    # Custom authenticate with phone or email
     def authenticate(self, request, **kwargs):
         try:
             if kwargs.get('phone'):

@@ -10,9 +10,9 @@ from users.managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField('Email address', unique=True)
-    phone = models.SmallIntegerField(null=True, blank=True, unique=True)
+    phone = models.SmallIntegerField(blank=True, unique=True)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone']
+    REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
 

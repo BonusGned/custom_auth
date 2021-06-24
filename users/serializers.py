@@ -34,3 +34,10 @@ class CustomTokenObtainPairSerializer(serializers.Serializer):
             return data
         elif not user:
             return 'User does not exist'
+
+
+class UploadFileSerializer(serializers.Serializer):
+    import_file = serializers.FileField(label='Import file')
+
+    class Meta:
+        fields = ('import_file',)

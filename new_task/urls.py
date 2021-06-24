@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
-from users.views import CustomTokenObtainPairView
+from users.views import CustomTokenObtainPairView, export_csv, export_xls, UploadFileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
-    path('auth/jwt/create/', CustomTokenObtainPairView.as_view(), name='custom_token_obtain_pair'),
+    path('auth/jwt/create/', CustomTokenObtainPairView.as_view()),
+    path('import/', UploadFileView.as_view()),
+    path('export_csv/', export_csv),
+    path('expo/', export_xls),
 ]
